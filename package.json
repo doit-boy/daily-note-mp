@@ -41,6 +41,7 @@
     "@tarojs/react": "3.2.15",
     "@tarojs/runtime": "3.2.15",
     "@tarojs/taro": "3.2.15",
+    "dayjs": "^1.11.9",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "yarn": "^1.22.19"
@@ -51,7 +52,7 @@
     "@tarojs/webpack-runner": "3.2.15",
     "@types/react": "^16.0.0",
     "@types/webpack-env": "^1.13.6",
-    "@typescript-eslint/eslint-plugin": "^2.x",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.x",
     "babel-preset-taro": "3.2.15",
     "eslint": "^6.8.0",
