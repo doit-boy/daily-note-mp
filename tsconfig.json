@@ -15,21 +15,18 @@
     "sourceMap": true,
     "baseUrl": ".",
     "rootDir": ".",
-    "jsx": "react-jsx",
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
     "allowJs": true,
     "resolveJsonModule": true,
     "typeRoots": [
-      "node_modules/@types"
-    ],
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+      "node_modules/@types",
+      "global.d.ts"
+    ]
   },
-  "include": [
-    "./src",
-    "./types"
+  "exclude": [
+    "node_modules",
+    "dist"
   ],
   "compileOnSave": false
 }

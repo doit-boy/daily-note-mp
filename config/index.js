@@ -1,8 +1,8 @@
 import { resolve } from 'path'
 
 const config = {
-  projectName: 'reactApp',
-  date: '2023-6-30',
+  projectName: 'taro3_react',
+  date: '2020-8-10',
   designWidth: 750,
   deviceRatio: {
     640: 2.34 / 2,
@@ -15,25 +15,28 @@ const config = {
   defineConstants: {
   },
   alias: {
-    '@': resolve(__dirname, '..', 'src'),
+    '@/vant': resolve(__dirname, '../src/components/vant-weapp/dist')
   },
   copy: {
     patterns: [
+      { from: 'src/components/vant-weapp/dist/wxs', to: 'dist/components/vant-weapp/dist/wxs' },
+      { from: 'src/components/vant-weapp/dist/common/style', to: 'dist/components/vant-weapp/dist/common/style' },
+      { from: 'src/components/vant-weapp/dist/common/index.wxss', to: 'dist/components/vant-weapp/dist/common/index.wxss' },
+      { from: 'src/components/vant-weapp/dist/calendar/index.wxs', to: 'dist/components/vant-weapp/dist/calendar/index.wxs' },
+      { from: 'src/components/vant-weapp/dist/calendar/utils.wxs', to: 'dist/components/vant-weapp/dist/calendar/utils.wxs' },
+      { from: 'src/components/vant-weapp/dist/calendar/calendar.wxml', to: 'dist/components/vant-weapp/dist/calendar/calendar.wxml' },
+      { from: 'src/components/vant-weapp/dist/calendar/components/month/index.wxs', to: 'dist/components/vant-weapp/dist/calendar/components/month/index.wxs' },
     ],
     options: {
     }
   },
   framework: 'react',
-  compiler: 'webpack5',
-  cache: {
-    enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
-  },
   mini: {
     postcss: {
       pxtransform: {
         enable: true,
         config: {
-
+          selectorBlackList: [/van-/]
         }
       },
       url: {
@@ -69,6 +72,12 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    router: {
+      mode: 'hash',
+      customRoutes: {
+        '/pages/index/index': '/'
+      }
+    },
     postcss: {
       autoprefixer: {
         enable: true,
@@ -83,18 +92,10 @@ const config = {
         }
       }
     }
-  },
-  rn: {
-    appName: 'taroDemo',
-    postcss: {
-      cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-      }
-    }
   }
 }
 
-module.exports = function (merge) {
+export default function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }
