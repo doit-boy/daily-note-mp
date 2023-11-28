@@ -10,14 +10,23 @@ export default function Index() {
     data: 'Hello world!333333',
     time: '',
   })
-  const {show, data} = pagesData
+  const { show, data, time } = pagesData
 
-  const open = (val:boolean) => {
-    setPagesData({...pagesData,show:val})
+  const autoOpen = (val:boolean) => {
+    setPagesData({ ...pagesData, show: val })
   }
 
   const onConfirm = (event) =>{
-    console.log(event);
+    setPagesData({ 
+      ...pagesData,
+      time: formatDate(event.mpEvent.detail),
+      show: false
+    })
+  }
+
+  const formatDate = (date) =>{
+    date = new Date(date);
+    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
   }
 
   useEffect(()=>{
@@ -26,12 +35,13 @@ export default function Index() {
 
   return (
     <View className='index'>
-      <van-button type="primary" onClick = { open(true) }>按钮</van-button>
+      <van-button type='primary' onClick={() => autoOpen(true)}>按钮</van-button>
       <van-calendar
         show={show}
-        onclose={open(false)}
-        onconfirm={onConfirm} />
-      <Text>{ data }</Text>
+        onClose={() => autoOpen(false)}
+        onconfirm={(e) => onConfirm(e)}
+      />
+      <Text>{ data }:{ time }</Text>
       { show ? <Text> 1111 </Text> : <Text> 222222 </Text> }
     </View>
   )
